@@ -18,12 +18,12 @@ workflow "compile a cmake project" {
 
 action "build" {
   uses = "popperized/cmake@master"
-  args = "target"
+  args = "install"
   env = {
-    CMAKE_GIT_REPO = ""
-    CMAKE_INSTALL_DEPS_SCRIPT = ""
-    CMAKE_FLAGS = ""
-    CMAKE_BUILD_THREADS = ""
+    CMAKE_GIT_REPO = "https://github.com/bast/cmake-example",
+    CMAKE_INSTALL_DEPS_SCRIPT = "scripts/install_deps.sh",
+    CMAKE_FLAGS = "-DCMAKE_INSTALL_PREFIX:PATH=/tmp/foo",
+    CMAKE_BUILD_THREADS = "8"
   }
 }
 ```
