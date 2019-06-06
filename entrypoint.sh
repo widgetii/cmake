@@ -5,6 +5,10 @@ if [ -z "$CMAKE_PROJECT_DIR" ] && [ -z "$CMAKE_GIT_REPO" ]; then
   echo "Expecting one of CMAKE_PROJECT_DIR or CMAKE_GIT_REPO"
   exit 1
 fi
+if [ -n "$CMAKE_PROJECT_DIR" ] && [ -n "$CMAKE_GIT_REPO" ]; then
+  echo "Expecting only one of CMAKE_PROJECT_DIR or CMAKE_GIT_REPO"
+  exit 1
+fi
 
 if [ -n "$CMAKE_GIT_REPO" ]; then
   CMAKE_PROJECT_DIR="$PWD/$(basename $CMAKE_GIT_REPO)"
