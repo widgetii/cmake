@@ -23,7 +23,7 @@ if [ -n "$CMAKE_GIT_REPO" ]; then
 fi
 
 if [ -n "$CMAKE_INSTALL_DEPS_SCRIPT" ]; then
-  $CMAKE_INSTALL_DEPS_SCRIPT
+  source $CMAKE_INSTALL_DEPS_SCRIPT
 fi
 
 if [ "$CMAKE_CLEAN" == "true" ] || [ ! -d "$CMAKE_PROJECT_DIR/build" ]; then
