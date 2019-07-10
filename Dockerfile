@@ -1,4 +1,4 @@
-FROM debian:buster-20190506-slim
+FROM ubuntu:bionic
 
 LABEL "com.github.actions.name"="CMake"
 LABEL "com.github.actions.description"="Build CMake projects"
