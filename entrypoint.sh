@@ -23,9 +23,7 @@ if [ -n "$CMAKE_GIT_REPO" ]; then
 fi
 
 if [ -n "$CMAKE_INSTALL_DEPS_SCRIPT" ]; then
-  apt-get update
   source $CMAKE_INSTALL_DEPS_SCRIPT
-  apt-get clean -y
 fi
 
 if [ "$CMAKE_CLEAN" == "true" ] || [ ! -d "$CMAKE_PROJECT_DIR/build" ]; then
