@@ -28,21 +28,21 @@ if [ -n "$CMAKE_INSTALL_DEPS_SCRIPT" ]; then
   apt-get clean -y
 fi
 
-if [ "$CMAKE_CLEAN" == "true" ] || [ ! -d "$CMAKE_PROJECT_DIR/build" ]; then
-  rm -rf "$CMAKE_PROJECT_DIR/build"
+BUILD_DIR="$CMAKE_PROJECT_DIR/build"
+
+if [ "$CMAKE_CLEAN" == "true" ] || [ ! -d $BUILD_DIR ]; then
+  rm -rf $BUILD_DIR
   git -C "$CMAKE_PROJECT_DIR" submodule update --init --recursive
 fi
 
-mkdir -p "$CMAKE_PROJECT_DIR/build"
+mkdir -p $BUILD_DIR
 
-cd "$CMAKE_PROJECT_DIR/build"
-
-if [ -z "$(ls -A ./)" ] || [ "$CMAKE_RECONFIGURE" == "true" ] ; then
-  cmake $CMAKE_FLAGS ..
+if [ -z "$(ls -A $BUILD_DIR)" ] || [ "$CMAKE_RECONFIGURE" == "true" ] ; then
+  cmake $CMAKE_FLAGS -H. -B$BUILD_DIR
 fi
 
 if [ -z "$CMAKE_BUILD_THREADS" ] ; then
   CMAKE_BUILD_THREADS=`grep processor /proc/cpuinfo | wc -l`
 fi
 
-make -j$CMAKE_BUILD_THREADS $@
+cmake --build $BUILD_DIR $@
